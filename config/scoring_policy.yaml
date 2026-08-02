@@ -1,0 +1,16 @@
+# Public Health Outbreak Intelligence - Scoring Policy Configuration
+# This file defines the weights and thresholds for event scoring
+
+scoring:
+  # Weight factors for each scoring category (0-100 total)
+  idaho_pnw_weight: 35        # Idaho / Pacific Northwest relevance: 0-35 points
+  healthcare_ip_weight: 25    # Healthcare or infection-prevention relevance: 0-25 points
+  official_urgency_weight: 20 # Official urgency/severity signal: 0-20 points
+  travel_weight: 10          # US travel/importation relevance: 0-10 points
+  novelty_weight: 10         # Novelty: 0-10 points
+
+  # Thresholds for priority bands
+  urgent_threshold: 75       # Score >= 75: urgent_human_review
+  review_threshold: 45       # Score >= 45: review_today
+  monitor_threshold: 20      # Score >= 20: monitor
+  # Score < 20: archive

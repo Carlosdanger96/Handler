@@ -1,0 +1,39 @@
+# Public Health Outbreak Intelligence - Source Configuration
+# This file defines the approved sources for data collection
+
+sources:
+  - source_id: cdc_han
+    source_name: CDC Health Alert Network
+    source_url: https://emergency.cdc.gov/han/
+    feed_url: https://emergency.cdc.gov/han/han-rss.asp
+    enabled: true
+    priority: 10
+    timeout: 30
+    user_agent: null
+
+  - source_id: cdc_outbreaks
+    source_name: CDC Outbreak Investigations
+    source_url: https://www.cdc.gov/outbreaks/index.html
+    feed_url: null
+    enabled: true
+    priority: 9
+    timeout: 30
+    user_agent: null
+
+  - source_id: idaho_dhw
+    source_name: Idaho Department of Health and Welfare
+    source_url: https://healthandwelfare.idaho.gov/services/health/epidemiology-disease-control/communicable-diseases
+    feed_url: null
+    enabled: true
+    priority: 8
+    timeout: 30
+    user_agent: null
+
+  - source_id: who_don
+    source_name: WHO Disease Outbreak News
+    source_url: https://www.who.int/emergencies/disease-outbreak-news
+    feed_url: https://www.who.int/feeds/entity/134702/rss
+    enabled: true
+    priority: 7
+    timeout: 30
+    user_agent: null
