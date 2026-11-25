@@ -2,6 +2,8 @@
 
 Handler is the provider-neutral experiment and research orchestration layer for CarlosDanger projects.
 
+The full design lives in [docs/handler-design.md](docs/handler-design.md).
+
 It implements a bounded Hyra-style loop:
 
 ```text
