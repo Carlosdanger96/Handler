@@ -1,0 +1,51 @@
+{
+  "campaign_id": "memorycore-duplicate-detection-v1",
+  "objective": "Improve Memorycore duplicate-detection precision and recall on the fixed duplicate/correction benchmark without regressing existing memory-service tests.",
+  "project_id": "memorycore",
+  "target_repo": "../Memorycore",
+  "base_ref": "HEAD",
+  "sandbox": { "type": "worktree" },
+  "evaluator": {
+    "type": "pytest",
+    "test_paths": ["tests"],
+    "timeout": 300
+  },
+  "budget": {
+    "max_experiments": 4,
+    "max_wall_seconds": 1800,
+    "per_experiment_timeout_seconds": 300,
+    "plateau_limit": 2
+  },
+  "protected_paths": [
+    ".github/**",
+    ".env*",
+    "secrets/**",
+    "*.pem",
+    "*.key"
+  ],
+  "ledger": { "type": "jsonl", "path": "artifacts/ledger" },
+  "artifacts_dir": "artifacts",
+  "workers": {
+    "codex": { "type": "codex", "timeout": 300 },
+    "vibe": { "type": "vibe", "timeout": 300 },
+    "local": {
+      "type": "script",
+      "timeout": 120,
+      "script": "from pathlib import Path\nprint('local worker: edit src/memorycore to test the hypothesis; the harness captures the diff')\n"
+    }
+  },
+  "hypotheses": [
+    {
+      "statement": "Normalize content (case, whitespace, unicode) before exact-duplicate comparison in Memorycore to raise recall without false positives.",
+      "worker": "codex"
+    },
+    {
+      "statement": "Combine FTS ranking with exact-match boost for duplicate detection to improve precision on near-duplicates.",
+      "worker": "vibe"
+    },
+    {
+      "statement": "Local smoke hypothesis: verify the benchmark harness itself runs green on the base revision before model proposals.",
+      "worker": "local"
+    }
+  ]
+}

@@ -69,3 +69,23 @@ docs/
 - Protected paths cannot be modified by a campaign.
 - A single successful experiment cannot become validated procedural memory.
 - Production deployment, security-sensitive changes, and merges require explicit approval.
+
+## Usage
+
+The framework is implemented under `handler/` (pure stdlib Python >= 3.11) and is installable:
+
+```bash
+pip install -e .          # core
+pip install -e .[test]    # with pytest
+handler init my-campaign.json
+handler run my-campaign.json
+handler list --ledger artifacts/ledger
+handler approve <experiment_id> --by <you> --promote-lesson --ledger artifacts/ledger
+```
+
+See [docs/USAGE.md](docs/USAGE.md) for the full campaign schema, worker adapter types
+(`codex`, `vibe`, `hermes`, `cli`, `script`), sandbox types (`worktree`, `container`),
+budget/plateau controls, and the artifacts layout. An example campaign for the first
+vertical slice is in [examples/campaigns/duplicate_detection.json](examples/campaigns/duplicate_detection.json).
+
+Run the test suite with `python -m pytest`.

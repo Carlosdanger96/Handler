@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handler"
+version = "0.1.0.dev0"
+description = "Provider-neutral experiment and research orchestration layer (bounded Hyra-style loop)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+memorycore = ["memorycore>=0.1"]
+dev = ["handler[test]"]
+
+[project.scripts]
+handler = "handler.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["handler*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
