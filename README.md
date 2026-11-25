@@ -14,6 +14,8 @@ objective
   -> require approval before merging or promoting knowledge
 ```
 
+Full design: [docs/handler-design.md](docs/handler-design.md)
+
 ## Repository boundary
 
 Handler owns orchestration only:
